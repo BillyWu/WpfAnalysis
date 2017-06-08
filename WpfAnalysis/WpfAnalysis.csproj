@@ -1,0 +1,431 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{3365AAFB-FEF4-4B81-B718-381DB66794CC}</ProjectGuid>
+    <OutputType>WinExe</OutputType>
+    <RootNamespace>WpfAnalysis</RootNamespace>
+    <AssemblyName>WpfAnalysis</AssemblyName>
+    <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
+    <WarningLevel>4</WarningLevel>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.3\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xaml">
+      <RequiredTargetFramework>4.0</RequiredTargetFramework>
+    </Reference>
+    <Reference Include="WindowsBase" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+  </ItemGroup>
+  <ItemGroup>
+    <ApplicationDefinition Include="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </ApplicationDefinition>
+    <Compile Include="EnumCardType.cs" />
+    <Compile Include="NotifyPropertyChanged.cs" />
+    <Compile Include="OutAnalysisViewModel.cs" />
+    <Compile Include="OutViewModel.cs" />
+    <Compile Include="SoftOpenAnalysis.xaml.cs">
+      <DependentUpon>SoftOpenAnalysis.xaml</DependentUpon>
+    </Compile>
+    <Page Include="InAnalysis.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Compile Include="App.xaml.cs">
+      <DependentUpon>App.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="InAnalysis.xaml.cs">
+      <DependentUpon>InAnalysis.xaml</DependentUpon>
+    </Compile>
+    <Page Include="OutAnalysis.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="SoftOpenAnalysis.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Models\CardRecharge.cs" />
+    <Compile Include="Models\card_charge.cs" />
+    <Compile Include="Models\card_delay.cs" />
+    <Compile Include="Models\card_lost.cs" />
+    <Compile Include="Models\card_make.cs" />
+    <Compile Include="Models\card_quit.cs" />
+    <Compile Include="Models\Card_quit_Pay.cs" />
+    <Compile Include="Models\card_status.cs" />
+    <Compile Include="Models\card_type.cs" />
+    <Compile Include="Models\car_no.cs" />
+    <Compile Include="Models\car_type.cs" />
+    <Compile Include="Models\color_type.cs" />
+    <Compile Include="Models\customer.cs" />
+    <Compile Include="Models\custoper.cs" />
+    <Compile Include="Models\device.cs" />
+    <Compile Include="Models\devtype.cs" />
+    <Compile Include="Models\door_card_make.cs" />
+    <Compile Include="Models\door_dev_parm.cs" />
+    <Compile Include="Models\dtproperty.cs" />
+    <Compile Include="Models\EateryCardPay.cs" />
+    <Compile Include="Models\EateryComputer.cs" />
+    <Compile Include="Models\EateryCstDinRec.cs" />
+    <Compile Include="Models\EateryCustLevel.cs" />
+    <Compile Include="Models\EateryDevice.cs" />
+    <Compile Include="Models\EateryDevicePrice.cs" />
+    <Compile Include="Models\EateryDeviceSet.cs" />
+    <Compile Include="Models\EateryDeviceTime.cs" />
+    <Compile Include="Models\EateryDinner.cs" />
+    <Compile Include="Models\EateryDinnerAdd.cs" />
+    <Compile Include="Models\EateryLevelSet.cs" />
+    <Compile Include="Models\EateryWhitelist.cs" />
+    <Compile Include="Models\fee_std.cs" />
+    <Compile Include="Models\FZWD20150818Context.cs" />
+    <Compile Include="Models\handoperator.cs" />
+    <Compile Include="Models\hmd.cs" />
+    <Compile Include="Models\hmd_list.cs" />
+    <Compile Include="Models\InvalidOpenGate.cs" />
+    <Compile Include="Models\in_park.cs" />
+    <Compile Include="Models\in_park_history.cs" />
+    <Compile Include="Models\kq_chuCai.cs" />
+    <Compile Include="Models\kq_daKa.cs" />
+    <Compile Include="Models\kq_daKaH.cs" />
+    <Compile Include="Models\kq_dept.cs" />
+    <Compile Include="Models\kq_deptWork.cs" />
+    <Compile Include="Models\kq_history.cs" />
+    <Compile Include="Models\kq_holiday.cs" />
+    <Compile Include="Models\kq_huiZongH.cs" />
+    <Compile Include="Models\kq_jiaBan.cs" />
+    <Compile Include="Models\kq_mingXiH.cs" />
+    <Compile Include="Models\kq_qianKa.cs" />
+    <Compile Include="Models\kq_qingJia.cs" />
+    <Compile Include="Models\kq_rule.cs" />
+    <Compile Include="Models\kq_work.cs" />
+    <Compile Include="Models\kq_workQueueH.cs" />
+    <Compile Include="Models\kq_wrkHoliday.cs" />
+    <Compile Include="Models\lift_card_make.cs" />
+    <Compile Include="Models\lift_info.cs" />
+    <Compile Include="Models\lift_price.cs" />
+    <Compile Include="Models\lift_record.cs" />
+    <Compile Include="Models\log.cs" />
+    <Compile Include="Models\Mapping\CardRechargeMap.cs" />
+    <Compile Include="Models\Mapping\card_chargeMap.cs" />
+    <Compile Include="Models\Mapping\card_delayMap.cs" />
+    <Compile Include="Models\Mapping\card_lostMap.cs" />
+    <Compile Include="Models\Mapping\card_makeMap.cs" />
+    <Compile Include="Models\Mapping\card_quitMap.cs" />
+    <Compile Include="Models\Mapping\Card_quit_PayMap.cs" />
+    <Compile Include="Models\Mapping\card_statusMap.cs" />
+    <Compile Include="Models\Mapping\card_typeMap.cs" />
+    <Compile Include="Models\Mapping\car_noMap.cs" />
+    <Compile Include="Models\Mapping\car_typeMap.cs" />
+    <Compile Include="Models\Mapping\color_typeMap.cs" />
+    <Compile Include="Models\Mapping\customerMap.cs" />
+    <Compile Include="Models\Mapping\custoperMap.cs" />
+    <Compile Include="Models\Mapping\deviceMap.cs" />
+    <Compile Include="Models\Mapping\devtypeMap.cs" />
+    <Compile Include="Models\Mapping\door_card_makeMap.cs" />
+    <Compile Include="Models\Mapping\door_dev_parmMap.cs" />
+    <Compile Include="Models\Mapping\dtpropertyMap.cs" />
+    <Compile Include="Models\Mapping\EateryCardPayMap.cs" />
+    <Compile Include="Models\Mapping\EateryComputerMap.cs" />
+    <Compile Include="Models\Mapping\EateryCstDinRecMap.cs" />
+    <Compile Include="Models\Mapping\EateryCustLevelMap.cs" />
+    <Compile Include="Models\Mapping\EateryDeviceMap.cs" />
+    <Compile Include="Models\Mapping\EateryDevicePriceMap.cs" />
+    <Compile Include="Models\Mapping\EateryDeviceSetMap.cs" />
+    <Compile Include="Models\Mapping\EateryDeviceTimeMap.cs" />
+    <Compile Include="Models\Mapping\EateryDinnerAddMap.cs" />
+    <Compile Include="Models\Mapping\EateryDinnerMap.cs" />
+    <Compile Include="Models\Mapping\EateryLevelSetMap.cs" />
+    <Compile Include="Models\Mapping\EateryWhitelistMap.cs" />
+    <Compile Include="Models\Mapping\fee_stdMap.cs" />
+    <Compile Include="Models\Mapping\handoperatorMap.cs" />
+    <Compile Include="Models\Mapping\hmdMap.cs" />
+    <Compile Include="Models\Mapping\hmd_listMap.cs" />
+    <Compile Include="Models\Mapping\InvalidOpenGateMap.cs" />
+    <Compile Include="Models\Mapping\in_parkMap.cs" />
+    <Compile Include="Models\Mapping\in_park_historyMap.cs" />
+    <Compile Include="Models\Mapping\kq_chuCaiMap.cs" />
+    <Compile Include="Models\Mapping\kq_daKaHMap.cs" />
+    <Compile Include="Models\Mapping\kq_daKaMap.cs" />
+    <Compile Include="Models\Mapping\kq_deptMap.cs" />
+    <Compile Include="Models\Mapping\kq_deptWorkMap.cs" />
+    <Compile Include="Models\Mapping\kq_historyMap.cs" />
+    <Compile Include="Models\Mapping\kq_holidayMap.cs" />
+    <Compile Include="Models\Mapping\kq_huiZongHMap.cs" />
+    <Compile Include="Models\Mapping\kq_jiaBanMap.cs" />
+    <Compile Include="Models\Mapping\kq_mingXiHMap.cs" />
+    <Compile Include="Models\Mapping\kq_qianKaMap.cs" />
+    <Compile Include="Models\Mapping\kq_qingJiaMap.cs" />
+    <Compile Include="Models\Mapping\kq_ruleMap.cs" />
+    <Compile Include="Models\Mapping\kq_workMap.cs" />
+    <Compile Include="Models\Mapping\kq_workQueueHMap.cs" />
+    <Compile Include="Models\Mapping\kq_wrkHolidayMap.cs" />
+    <Compile Include="Models\Mapping\lift_card_makeMap.cs" />
+    <Compile Include="Models\Mapping\lift_infoMap.cs" />
+    <Compile Include="Models\Mapping\lift_priceMap.cs" />
+    <Compile Include="Models\Mapping\lift_recordMap.cs" />
+    <Compile Include="Models\Mapping\logMap.cs" />
+    <Compile Include="Models\Mapping\M_ContrlNoMap.cs" />
+    <Compile Include="Models\Mapping\M_ControlDefineMap.cs" />
+    <Compile Include="Models\Mapping\M_controlStallMap.cs" />
+    <Compile Include="Models\Mapping\M_logMap.cs" />
+    <Compile Include="Models\Mapping\M_RecordMap.cs" />
+    <Compile Include="Models\Mapping\M_Record_historyMap.cs" />
+    <Compile Include="Models\Mapping\M_TimeMap.cs" />
+    <Compile Include="Models\Mapping\M_TimeTaskMap.cs" />
+    <Compile Include="Models\Mapping\operatorMap.cs" />
+    <Compile Include="Models\Mapping\operator_rightMap.cs" />
+    <Compile Include="Models\Mapping\out_parkMap.cs" />
+    <Compile Include="Models\Mapping\out_park_historyMap.cs" />
+    <Compile Include="Models\Mapping\parkingInsideMap.cs" />
+    <Compile Include="Models\Mapping\parkingless520Map.cs" />
+    <Compile Include="Models\Mapping\parkingMap.cs" />
+    <Compile Include="Models\Mapping\parkMap.cs" />
+    <Compile Include="Models\Mapping\ParkSearch_area_dictionaryMap.cs" />
+    <Compile Include="Models\Mapping\Parksearch_Area_lineMap.cs" />
+    <Compile Include="Models\Mapping\ParkSearch_car_logMap.cs" />
+    <Compile Include="Models\Mapping\ParkSearch_car_recordMap.cs" />
+    <Compile Include="Models\Mapping\ParkSearch_mapMap.cs" />
+    <Compile Include="Models\Mapping\Parksearch_posMap.cs" />
+    <Compile Include="Models\Mapping\Parksearch_recognizerMap.cs" />
+    <Compile Include="Models\Mapping\Park_Auto_Pay_RecordMap.cs" />
+    <Compile Include="Models\Mapping\park_card_makeMap.cs" />
+    <Compile Include="Models\Mapping\park_central_payMap.cs" />
+    <Compile Include="Models\Mapping\Park_Device_StateMap.cs" />
+    <Compile Include="Models\Mapping\park_dev_parmMap.cs" />
+    <Compile Include="Models\Mapping\park_pay_billMap.cs" />
+    <Compile Include="Models\Mapping\Park_Pay_DeviceMap.cs" />
+    <Compile Include="Models\Mapping\park_stallMap.cs" />
+    <Compile Include="Models\Mapping\park_timesecMap.cs" />
+    <Compile Include="Models\Mapping\PayMethodMap.cs" />
+    <Compile Include="Models\Mapping\PA_tboDeviceMap.cs" />
+    <Compile Include="Models\Mapping\PA_tboLocalMap.cs" />
+    <Compile Include="Models\Mapping\PA_tboSchemeMap.cs" />
+    <Compile Include="Models\Mapping\remote_controlMap.cs" />
+    <Compile Include="Models\Mapping\stall_occuppyMap.cs" />
+    <Compile Include="Models\Mapping\subsystemMap.cs" />
+    <Compile Include="Models\Mapping\sysindexMap.cs" />
+    <Compile Include="Models\Mapping\SystemSetMap.cs" />
+    <Compile Include="Models\Mapping\Table_AliasOfPlateMap.cs" />
+    <Compile Include="Models\Mapping\Table_MoneyDiscountMap.cs" />
+    <Compile Include="Models\Mapping\Table_PointDiscountMap.cs" />
+    <Compile Include="Models\Mapping\Table_VisitorMap.cs" />
+    <Compile Include="Models\Mapping\Table_XMLMap.cs" />
+    <Compile Include="Models\Mapping\Ticket_InfoMap.cs" />
+    <Compile Include="Models\Mapping\VcardKindMap.cs" />
+    <Compile Include="Models\Mapping\vCardLostRptMap.cs" />
+    <Compile Include="Models\Mapping\vCardMakeMap.cs" />
+    <Compile Include="Models\Mapping\vCardPayRptMap.cs" />
+    <Compile Include="Models\Mapping\vCardQuitRptMap.cs" />
+    <Compile Include="Models\Mapping\vComputerMap.cs" />
+    <Compile Include="Models\Mapping\vCustCard2Map.cs" />
+    <Compile Include="Models\Mapping\vCustCard3Map.cs" />
+    <Compile Include="Models\Mapping\vCustCardMap.cs" />
+    <Compile Include="Models\Mapping\vcustomerMap.cs" />
+    <Compile Include="Models\Mapping\vDeviceMap.cs" />
+    <Compile Include="Models\Mapping\vDeviceTimeMap.cs" />
+    <Compile Include="Models\Mapping\vDinnerAddMap.cs" />
+    <Compile Include="Models\Mapping\vEateryCstDinRecMap.cs" />
+    <Compile Include="Models\Mapping\vEateryDinnerMap.cs" />
+    <Compile Include="Models\Mapping\vEaterylevelsetMap.cs" />
+    <Compile Include="Models\Mapping\vEateryPayMap.cs" />
+    <Compile Include="Models\Mapping\vEateryPayQuitMap.cs" />
+    <Compile Include="Models\Mapping\vEatery_quit_payMap.cs" />
+    <Compile Include="Models\Mapping\vi_dev_parmMap.cs" />
+    <Compile Include="Models\Mapping\VKQ_dakaHMap.cs" />
+    <Compile Include="Models\Mapping\VKQ_dakaMap.cs" />
+    <Compile Include="Models\Mapping\VKQ_deptWorkMap.cs" />
+    <Compile Include="Models\Mapping\VKQ_HistoryMap.cs" />
+    <Compile Include="Models\Mapping\VKQ_mingxiHMap.cs" />
+    <Compile Include="Models\Mapping\VKQ_mingxiMap.cs" />
+    <Compile Include="Models\Mapping\VKQ_wrkQueueHMap.cs" />
+    <Compile Include="Models\Mapping\VKQ_wrkQueueMap.cs" />
+    <Compile Include="Models\Mapping\vLiftRecordMap.cs" />
+    <Compile Include="Models\Mapping\vParkWhiteListMap.cs" />
+    <Compile Include="Models\Mapping\vRealControlMap.cs" />
+    <Compile Include="Models\Mapping\vTableInfoMap.cs" />
+    <Compile Include="Models\Mapping\V_controldefine1Map.cs" />
+    <Compile Include="Models\Mapping\V_controldefineMap.cs" />
+    <Compile Include="Models\Mapping\V_DoorHmdListMap.cs" />
+    <Compile Include="Models\Mapping\V_DoorWhiteListMap.cs" />
+    <Compile Include="Models\Mapping\V_Lift_Card_InfoMap.cs" />
+    <Compile Include="Models\Mapping\V_Lift_RecordMap.cs" />
+    <Compile Include="Models\Mapping\v_logMap.cs" />
+    <Compile Include="Models\Mapping\V_OUT_PARKMap.cs" />
+    <Compile Include="Models\Mapping\V_out_park_historyMap.cs" />
+    <Compile Include="Models\Mapping\white_list2Map.cs" />
+    <Compile Include="Models\Mapping\white_listMap.cs" />
+    <Compile Include="Models\Mapping\wkczyqMap.cs" />
+    <Compile Include="Models\Mapping\xg_lineMap.cs" />
+    <Compile Include="Models\Mapping\xg_nodeMap.cs" />
+    <Compile Include="Models\Mapping\xg_planMap.cs" />
+    <Compile Include="Models\Mapping\xg_plan_detailMap.cs" />
+    <Compile Include="Models\M_ContrlNo.cs" />
+    <Compile Include="Models\M_ControlDefine.cs" />
+    <Compile Include="Models\M_controlStall.cs" />
+    <Compile Include="Models\M_log.cs" />
+    <Compile Include="Models\M_Record.cs" />
+    <Compile Include="Models\M_Record_history.cs" />
+    <Compile Include="Models\M_Time.cs" />
+    <Compile Include="Models\M_TimeTask.cs" />
+    <Compile Include="Models\operator.cs" />
+    <Compile Include="Models\operator_right.cs" />
+    <Compile Include="Models\out_park.cs" />
+    <Compile Include="Models\out_park_history.cs" />
+    <Compile Include="Models\park.cs" />
+    <Compile Include="Models\parking.cs" />
+    <Compile Include="Models\parkingInside.cs" />
+    <Compile Include="Models\parkingless520.cs" />
+    <Compile Include="Models\ParkSearch_area_dictionary.cs" />
+    <Compile Include="Models\Parksearch_Area_line.cs" />
+    <Compile Include="Models\ParkSearch_car_log.cs" />
+    <Compile Include="Models\ParkSearch_car_record.cs" />
+    <Compile Include="Models\ParkSearch_map.cs" />
+    <Compile Include="Models\Parksearch_pos.cs" />
+    <Compile Include="Models\Parksearch_recognizer.cs" />
+    <Compile Include="Models\Park_Auto_Pay_Record.cs" />
+    <Compile Include="Models\park_card_make.cs" />
+    <Compile Include="Models\park_central_pay.cs" />
+    <Compile Include="Models\Park_Device_State.cs" />
+    <Compile Include="Models\park_dev_parm.cs" />
+    <Compile Include="Models\park_pay_bill.cs" />
+    <Compile Include="Models\Park_Pay_Device.cs" />
+    <Compile Include="Models\park_stall.cs" />
+    <Compile Include="Models\park_timesec.cs" />
+    <Compile Include="Models\PayMethod.cs" />
+    <Compile Include="Models\PA_tboDevice.cs" />
+    <Compile Include="Models\PA_tboLocal.cs" />
+    <Compile Include="Models\PA_tboScheme.cs" />
+    <Compile Include="Models\remote_control.cs" />
+    <Compile Include="Models\stall_occuppy.cs" />
+    <Compile Include="Models\subsystem.cs" />
+    <Compile Include="Models\sysindex.cs" />
+    <Compile Include="Models\SystemSet.cs" />
+    <Compile Include="Models\Table_AliasOfPlate.cs" />
+    <Compile Include="Models\Table_MoneyDiscount.cs" />
+    <Compile Include="Models\Table_PointDiscount.cs" />
+    <Compile Include="Models\Table_Visitor.cs" />
+    <Compile Include="Models\Table_XML.cs" />
+    <Compile Include="Models\Ticket_Info.cs" />
+    <Compile Include="Models\VcardKind.cs" />
+    <Compile Include="Models\vCardLostRpt.cs" />
+    <Compile Include="Models\vCardMake.cs" />
+    <Compile Include="Models\vCardPayRpt.cs" />
+    <Compile Include="Models\vCardQuitRpt.cs" />
+    <Compile Include="Models\vComputer.cs" />
+    <Compile Include="Models\vCustCard.cs" />
+    <Compile Include="Models\vCustCard2.cs" />
+    <Compile Include="Models\vCustCard3.cs" />
+    <Compile Include="Models\vcustomer.cs" />
+    <Compile Include="Models\vDevice.cs" />
+    <Compile Include="Models\vDeviceTime.cs" />
+    <Compile Include="Models\vDinnerAdd.cs" />
+    <Compile Include="Models\vEateryCstDinRec.cs" />
+    <Compile Include="Models\vEateryDinner.cs" />
+    <Compile Include="Models\vEaterylevelset.cs" />
+    <Compile Include="Models\vEateryPay.cs" />
+    <Compile Include="Models\vEateryPayQuit.cs" />
+    <Compile Include="Models\vEatery_quit_pay.cs" />
+    <Compile Include="Models\vi_dev_parm.cs" />
+    <Compile Include="Models\VKQ_daka.cs" />
+    <Compile Include="Models\VKQ_dakaH.cs" />
+    <Compile Include="Models\VKQ_deptWork.cs" />
+    <Compile Include="Models\VKQ_History.cs" />
+    <Compile Include="Models\VKQ_mingxi.cs" />
+    <Compile Include="Models\VKQ_mingxiH.cs" />
+    <Compile Include="Models\VKQ_wrkQueue.cs" />
+    <Compile Include="Models\VKQ_wrkQueueH.cs" />
+    <Compile Include="Models\vLiftRecord.cs" />
+    <Compile Include="Models\vParkWhiteList.cs" />
+    <Compile Include="Models\vRealControl.cs" />
+    <Compile Include="Models\vTableInfo.cs" />
+    <Compile Include="Models\V_controldefine.cs" />
+    <Compile Include="Models\V_controldefine1.cs" />
+    <Compile Include="Models\V_DoorHmdList.cs" />
+    <Compile Include="Models\V_DoorWhiteList.cs" />
+    <Compile Include="Models\V_Lift_Card_Info.cs" />
+    <Compile Include="Models\V_Lift_Record.cs" />
+    <Compile Include="Models\v_log.cs" />
+    <Compile Include="Models\V_OUT_PARK.cs" />
+    <Compile Include="Models\V_out_park_history.cs" />
+    <Compile Include="Models\white_list.cs" />
+    <Compile Include="Models\white_list2.cs" />
+    <Compile Include="Models\wkczyq.cs" />
+    <Compile Include="Models\xg_line.cs" />
+    <Compile Include="Models\xg_node.cs" />
+    <Compile Include="Models\xg_plan.cs" />
+    <Compile Include="Models\xg_plan_detail.cs" />
+    <Compile Include="OutAnalysis.xaml.cs">
+      <DependentUpon>OutAnalysis.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Properties\Resources.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Resources.resx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\Settings.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DependentUpon>Settings.settings</DependentUpon>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+    </Compile>
+    <EmbeddedResource Include="Properties\Resources.resx">
+      <Generator>ResXFileCodeGenerator</Generator>
+      <LastGenOutput>Resources.Designer.cs</LastGenOutput>
+    </EmbeddedResource>
+    <None Include="packages.config" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings.Designer.cs</LastGenOutput>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
