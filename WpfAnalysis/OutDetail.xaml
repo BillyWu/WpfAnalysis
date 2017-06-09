@@ -1,0 +1,37 @@
+﻿<Window x:Class="WpfAnalysis.OutDetail"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfAnalysis"
+        mc:Ignorable="d"
+        Title="出场详细" Height="400" Width="1000">
+    <Window.Resources>
+        <local:ImagePathConverter x:Key="ImagePathConverter"></local:ImagePathConverter>
+    </Window.Resources>
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="59*">
+            </ColumnDefinition>
+            <ColumnDefinition Width="437*"/>
+            <ColumnDefinition Width="496*">
+            </ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="300"></RowDefinition>
+            <RowDefinition Height="100"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Border BorderBrush="Gray" BorderThickness="1,1,1,1" Grid.ColumnSpan="2">
+            <Image Source="{Binding Path=OutPic, Converter={StaticResource ImagePathConverter}}"></Image>
+        </Border>
+        <Border BorderBrush="Gray" BorderThickness="1,1,1,1" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+            <TextBlock Text="{Binding Path=CarNo}"></TextBlock>
+        </Border>
+
+        <Border BorderBrush="Gray" BorderThickness="1,1,1,1" Grid.Row="0" Grid.Column="2">
+            <Image Source="{Binding Path=InPic, Converter={StaticResource ImagePathConverter}}"></Image>
+        </Border>
+        <Border BorderBrush="Gray" BorderThickness="1,1,1,1" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+        </Border>
+    </Grid>
+</Window>

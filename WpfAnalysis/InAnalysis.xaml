@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfAnalysis"
         mc:Ignorable="d"
-        Title="InAnalysis" Height="300" Width="300">
+        Title="入场查询" Height="800" Width="1200" FontSize="16">
     <Grid>
         
     </Grid>

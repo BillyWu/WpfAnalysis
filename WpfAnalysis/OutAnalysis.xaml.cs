@@ -26,10 +26,15 @@ namespace WpfAnalysis
             InitializeComponent();
 
             viewModel = new OutAnalysisViewModel();
-            viewModel.OutCollection = new ObservableCollection<OutViewModel>();
-            viewModel.OutCollection.Add(new OutViewModel() { CarNo="1" });
-
             this.DataContext = viewModel;
+        }
+
+        private void ListViewItem_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            var outViewModel = ((ListViewItem)sender).Content as OutViewModel;
+            var outDetail = new OutDetail(outViewModel);
+            outDetail.WindowStartupLocation = WindowStartupLocation.CenterOwner;
+            outDetail.ShowDialog();
         }
     }
 }
