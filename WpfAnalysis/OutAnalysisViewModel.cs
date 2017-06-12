@@ -15,10 +15,14 @@ namespace WpfAnalysis
             OutCollection = new ObservableCollection<OutViewModel>();
 
             SelectedCardType = EnumCardType.月租车;
-            AnalysisStartDate = DateTime.Parse("2000-01-01 00:00:00");
+
+            AnalysisStartDate = DateTime.Parse("2000-01-01 01:02:03");
             AnalysisStartTime = DateTime.Now;
             AnalysisEndDate = DateTime.Parse("2020-01-01 00:00:00");
             AnalysisEndTime = DateTime.Now;
+
+            AnalysisStartDateTime = DateTime.Parse("2000-01-01 01:02:03");
+            AnalysisEndDateTime = DateTime.Parse("2020-01-01 00:00:00");
 
             AnalysisCommand = new OutCommandAnalysis(this);
         }
@@ -39,6 +43,34 @@ namespace WpfAnalysis
             {
                 _SelectedCardType = value;
                 OnPropertyChanged("SelectedCardType");
+            }
+        }
+
+        private DateTime? _AnalysisStartDateTime;
+        public DateTime? AnalysisStartDateTime
+        {
+            get
+            {
+                return _AnalysisStartDateTime;
+            }
+            set
+            {
+                _AnalysisStartDateTime = value;
+                OnPropertyChanged("AnalysisStartDateTime");
+            }
+        }
+
+        private DateTime? _AnalysisEndDateTime;
+        public DateTime? AnalysisEndDateTime
+        {
+            get
+            {
+                return _AnalysisEndDateTime;
+            }
+            set
+            {
+                _AnalysisEndDateTime = value;
+                OnPropertyChanged("AnalysisEndDateTime");
             }
         }
 
@@ -112,5 +144,18 @@ namespace WpfAnalysis
             }
         }
 
+        private int _CollectionCount;
+        public int CollectionCount
+        {
+            get
+            {
+                return _CollectionCount;
+            }
+            set
+            {
+                _CollectionCount = value;
+                OnPropertyChanged("CollectionCount");
+            }
+        }
     }
 }

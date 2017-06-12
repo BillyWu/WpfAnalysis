@@ -23,12 +23,15 @@ namespace WpfAnalysis
             {
                 using (var context = new FZWD20150818Context())
                 {
-                    DateTime dtStartDT = DateTime.Parse(((DateTime)_viewModel.AnalysisStartDate).ToString("yyyy-MM-dd ")
-                            + ((DateTime)_viewModel.AnalysisStartTime).ToString("HH:mm:00"));
-                    DateTime dtEndDT = DateTime.Parse(((DateTime)_viewModel.AnalysisEndDate).ToString("yyyy-MM-dd ")
-                            + ((DateTime)_viewModel.AnalysisEndTime).ToString("HH:mm:00"));
+                    //DateTime dtStartDT = DateTime.Parse(((DateTime)_viewModel.AnalysisStartDate).ToString("yyyy-MM-dd ")
+                    //        + ((DateTime)_viewModel.AnalysisStartTime).ToString("HH:mm:00"));
+                    //DateTime dtEndDT = DateTime.Parse(((DateTime)_viewModel.AnalysisEndDate).ToString("yyyy-MM-dd ")
+                    //        + ((DateTime)_viewModel.AnalysisEndTime).ToString("HH:mm:00"));
+                    DateTime dtStartDT = (DateTime)_viewModel.AnalysisStartDateTime;
+                    DateTime dtEndDT = (DateTime)_viewModel.AnalysisEndDateTime;
 
                     var listRecord = context.out_park.Where(x => x.out_time >= dtStartDT && x.out_time <= dtEndDT).ToList();
+                    _viewModel.CollectionCount = listRecord.Count;
                     _viewModel.OutCollection.Clear();
                     foreach(var record in listRecord)
                     {

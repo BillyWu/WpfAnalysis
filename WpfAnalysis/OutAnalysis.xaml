@@ -36,30 +36,59 @@
                 </MultiTrigger>
             </Style.Triggers>
         </Style>
+        <local:IsEnabledConverterMultiValue x:Key="keyIsEnabledConverterMultiValue" />
     </Window.Resources>
     <Grid>
         <DockPanel>
             <Border DockPanel.Dock="Top" BorderBrush="Gray" BorderThickness="1,1,1,1">
-                <StackPanel HorizontalAlignment="Left" Margin="4" Orientation="Horizontal">
+                <StackPanel HorizontalAlignment="Left" Margin="8" Orientation="Horizontal">
                     <TextBlock VerticalAlignment="Center" Text="车类型:" />
-                    <ComboBox Margin="5,0,5,0" VerticalAlignment="Center" Width="80"
+                    <ComboBox Margin="10,0,10,0" VerticalAlignment="Center" Width="80"
                                           ItemsSource="{Binding Source={StaticResource EnumCardTypeEnum}}" 
                                           SelectedItem="{Binding SelectedCardType}"
                                           >
                     </ComboBox>
-                    <Button Content="查询" Command="{Binding AnalysisCommand}" Padding="8,0" Margin="6,0,6,0" />
-                    <TextBlock Text="开始时间:" VerticalAlignment="Center"/>
+                    
+                    <!--<TextBlock Text="开始时间:" VerticalAlignment="Center"/>
                     <DatePicker SelectedDate="{Binding AnalysisStartDate}"></DatePicker>
                     <xctk:DateTimePicker Value="{Binding AnalysisStartTime}" Format="Custom" FormatString="HH:mm" Margin="5,0" ShowDropDownButton="False" RenderTransformOrigin="0.5,0.5" TextAlignment="Right"/>
                     <TextBlock Text="结束时间:" VerticalAlignment="Center"/>
                     <DatePicker SelectedDate="{Binding AnalysisEndDate}"></DatePicker>
-                    <xctk:DateTimePicker Value="{Binding AnalysisEndTime}" Format="Custom" FormatString="HH:mm" Margin="5,0" ShowDropDownButton="False"/>
+                    <xctk:DateTimePicker Value="{Binding AnalysisEndTime}" Format="Custom" FormatString="HH:mm" Margin="5,0" ShowDropDownButton="False"/>-->
+
+                    <TextBlock Margin="10,0,10,0" Text="开始时间:" VerticalAlignment="Center"/>
+                    <xctk:DateTimePicker Margin="10,0,10,0" Value="{Binding AnalysisStartDateTime}"/>
+                    <TextBlock Margin="10,0,10,0" Text="结束时间:" VerticalAlignment="Center"/>
+                    <xctk:DateTimePicker Margin="10,0,10,0" Value="{Binding AnalysisEndDateTime}"/>
+
+                    <Button Margin="10,0,10,0" Content="查询" IsDefault="True" Command="{Binding AnalysisCommand}" Padding="8,0" />
+
+                    <TextBlock Margin="10,0,10,0" Text="记录数:" VerticalAlignment="Center"/>
+                    <TextBlock Margin="10,0,10,0" Text="{Binding CollectionCount}" VerticalAlignment="Center"/>
+
+                    <Button Margin="10,0,10,0" Content="导出Excel" Name="btnExcel" Click="btnExcel_Click" Padding="8,0">
+                        <Button.IsEnabled>
+                            <MultiBinding Converter="{StaticResource keyIsEnabledConverterMultiValue}">
+                                <Binding Path="OutCollection" />
+                                <Binding Path="CollectionCount" />
+                            </MultiBinding>
+                        </Button.IsEnabled>
+                    </Button>
+
+                    <Button Margin="10,0,10,0" Content="打印" Name="btnPrint" Click="btnPrint_Click" Padding="8,0">
+                        <Button.IsEnabled>
+                            <MultiBinding Converter="{StaticResource keyIsEnabledConverterMultiValue}">
+                                <Binding Path="OutCollection" />
+                                <Binding Path="CollectionCount" />
+                            </MultiBinding>
+                        </Button.IsEnabled>
+                    </Button>
                 </StackPanel>
             </Border>
             <Border DockPanel.Dock="Top" BorderBrush="Gray" BorderThickness="1,0,1,1">
-                <ListView ItemsSource="{Binding OutCollection}" Style="{StaticResource MyListViewStyle}" ItemContainerStyle="{StaticResource MyContainerStyle}">
+                <ListView Name="listView1" ItemsSource="{Binding OutCollection}" Style="{StaticResource MyListViewStyle}" ItemContainerStyle="{StaticResource MyContainerStyle}">
                     <ListView.View>
-                        <GridView>
+                        <GridView x:Name="gridView1">
                             <GridView.Columns>
                                 <GridViewColumn Header="编号" Width="80" DisplayMemberBinding="{Binding Path=PersonCode}" />
                                 <GridViewColumn Header="姓名" Width="80" DisplayMemberBinding="{Binding Path=PersonName}" />

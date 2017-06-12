@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
-VisualStudioVersion = 15.0.26430.12
+VisualStudioVersion = 15.0.26430.13
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfAnalysis", "WpfAnalysis\WpfAnalysis.csproj", "{3365AAFB-FEF4-4B81-B718-381DB66794CC}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SUT.PrintEngine", "SUT.PrintEngine\SUT.PrintEngine.csproj", "{0B3D76D5-D9F4-4C0E-AFA9-143138EBC74D}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{3365AAFB-FEF4-4B81-B718-381DB66794CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{3365AAFB-FEF4-4B81-B718-381DB66794CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{3365AAFB-FEF4-4B81-B718-381DB66794CC}.Release|Any CPU.Build.0 = Release|Any CPU
+		{0B3D76D5-D9F4-4C0E-AFA9-143138EBC74D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0B3D76D5-D9F4-4C0E-AFA9-143138EBC74D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0B3D76D5-D9F4-4C0E-AFA9-143138EBC74D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0B3D76D5-D9F4-4C0E-AFA9-143138EBC74D}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
