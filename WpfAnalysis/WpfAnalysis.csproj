@@ -92,9 +92,9 @@
     <Compile Include="PrintUtility\HeaderTemplate.xaml.cs">
       <DependentUpon>HeaderTemplate.xaml</DependentUpon>
     </Compile>
-    <Compile Include="IsEnabledConverterMultiValue.cs" />
+    <Compile Include="Converters\IsEnabledConverterMultiValue.cs" />
     <Compile Include="AnalysisMVVM\ViewModels\OutDetailViewModel.cs" />
-    <Compile Include="ImagePathConverter.cs" />
+    <Compile Include="Converters\ImagePathConverter.cs" />
     <Compile Include="AnalysisMVVM\TypeDefines\EnumCarType.cs" />
     <Compile Include="AnalysisMVVM\Commands\CommandBase.cs" />
     <Compile Include="AnalysisMVVM\TypeDefines\EnumCardType.cs" />
