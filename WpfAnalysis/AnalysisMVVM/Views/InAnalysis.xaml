@@ -1,0 +1,101 @@
+﻿<Window x:Class="WpfAnalysis.InAnalysis"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfAnalysis"
+        xmlns:sys="clr-namespace:System;assembly=mscorlib"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        mc:Ignorable="d"
+        Title="入场查询" Height="800" Width="1200" FontSize="16">
+    <Window.Resources>
+        <ObjectDataProvider x:Key="EnumCardTypeEnum" MethodName="GetValues" ObjectType="{x:Type sys:Enum}">
+            <ObjectDataProvider.MethodParameters>
+                <x:Type TypeName="local:EnumCardType"/>
+            </ObjectDataProvider.MethodParameters>
+        </ObjectDataProvider>
+        <Style x:Key="MyListViewStyle" TargetType="{x:Type ListBox}">
+            <Setter Property="SelectionMode" Value="Single"></Setter>
+            <Setter Property="Margin" Value="2"/>
+        </Style>
+        <Style x:Key="MyContainerStyle" TargetType="{x:Type ListViewItem}">
+            <Setter Property="Margin" Value="0,1,0,0"/>
+            <Setter Property="Height" Value="21"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <EventSetter Event="MouseDoubleClick" Handler="ListViewItem_MouseDoubleClick"/>
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Cursor" Value="Hand"/>
+                </Trigger>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsSelected" Value="true" />
+                        <Condition Property="Selector.IsSelectionActive" Value="true" />
+                    </MultiTrigger.Conditions>
+                    <Setter Property="Foreground" Value="Blue" />
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+        <local:IsEnabledConverterMultiValue x:Key="keyIsEnabledConverterMultiValue" />
+    </Window.Resources>
+    <Grid>
+        <DockPanel>
+            <Border DockPanel.Dock="Top" BorderBrush="Gray" BorderThickness="1,1,1,1">
+                <StackPanel HorizontalAlignment="Left" Margin="8" Orientation="Horizontal">
+                    <TextBlock VerticalAlignment="Center" Text="车类型:" />
+                    <ComboBox Margin="10,0,10,0" VerticalAlignment="Center" Width="80"
+                                          ItemsSource="{Binding Source={StaticResource EnumCardTypeEnum}}" 
+                                          SelectedItem="{Binding SelectedCardType}"
+                                          >
+                    </ComboBox>
+                    <TextBlock Margin="10,0,10,0" Text="开始时间:" VerticalAlignment="Center"/>
+                    <xctk:DateTimePicker Margin="10,0,10,0" Value="{Binding AnalysisStartDateTime}"/>
+                    <TextBlock Margin="10,0,10,0" Text="结束时间:" VerticalAlignment="Center"/>
+                    <xctk:DateTimePicker Margin="10,0,10,0" Value="{Binding AnalysisEndDateTime}"/>
+
+                    <Button Margin="10,0,10,0" Content="查询" IsDefault="True" Command="{Binding AnalysisCommand}" Padding="8,0" />
+
+                    <TextBlock Margin="10,0,10,0" Text="记录数:" VerticalAlignment="Center"/>
+                    <TextBlock Margin="10,0,10,0" Text="{Binding CollectionCount}" VerticalAlignment="Center"/>
+
+                    <Button Margin="10,0,10,0" Content="导出Excel" Name="btnExcel" Click="btnExcel_Click" Padding="8,0">
+                        <Button.IsEnabled>
+                            <MultiBinding Converter="{StaticResource keyIsEnabledConverterMultiValue}">
+                                <Binding Path="RecordCollection" />
+                                <Binding Path="CollectionCount" />
+                            </MultiBinding>
+                        </Button.IsEnabled>
+                    </Button>
+
+                    <Button Margin="10,0,10,0" Content="打印" Name="btnPrint" Click="btnPrint_Click" Padding="8,0">
+                        <Button.IsEnabled>
+                            <MultiBinding Converter="{StaticResource keyIsEnabledConverterMultiValue}">
+                                <Binding Path="RecordCollection" />
+                                <Binding Path="CollectionCount" />
+                            </MultiBinding>
+                        </Button.IsEnabled>
+                    </Button>
+                </StackPanel>
+            </Border>
+            <Border DockPanel.Dock="Top" BorderBrush="Gray" BorderThickness="1,0,1,1">
+                <ListView Name="listView1" ItemsSource="{Binding RecordCollection}" Style="{StaticResource MyListViewStyle}" ItemContainerStyle="{StaticResource MyContainerStyle}">
+                    <ListView.View>
+                        <GridView x:Name="gridView1">
+                            <GridView.Columns>
+                                <GridViewColumn Header="编号" Width="80" DisplayMemberBinding="{Binding Path=PersonCode}" />
+                                <GridViewColumn Header="姓名" Width="80" DisplayMemberBinding="{Binding Path=PersonName}" />
+                                <GridViewColumn Header="车号" Width="80" DisplayMemberBinding="{Binding Path=CardNo}" />
+                                <GridViewColumn Header="车类" Width="80" DisplayMemberBinding="{Binding Path=CardType}" />
+                                <GridViewColumn Header="车牌" Width="160" DisplayMemberBinding="{Binding Path=CarNo}" />
+                                <GridViewColumn Header="入场图片" Width="210" DisplayMemberBinding="{Binding Path=InPic}" />
+                                <GridViewColumn Header="入场时间" Width="180" DisplayMemberBinding="{Binding Path=InTime, StringFormat=yyyy-MM-dd HH:mm:ss}" />
+                                <GridViewColumn Header="地址" Width="60" DisplayMemberBinding="{Binding Path=InFrom}" />
+                                <GridViewColumn Header="操作员" Width="80" DisplayMemberBinding="{Binding Path=OperatorName}" />
+                            </GridView.Columns>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Border>
+        </DockPanel>
+    </Grid>
+</Window>

@@ -5,33 +5,32 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfAnalysis"
         mc:Ignorable="d"
-        Title="出场详细" Height="400" Width="1000">
+        Title="出场详细" Height="570" Width="1920">
     <Window.Resources>
         <local:ImagePathConverter x:Key="ImagePathConverter"></local:ImagePathConverter>
     </Window.Resources>
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="59*">
-            </ColumnDefinition>
-            <ColumnDefinition Width="437*"/>
-            <ColumnDefinition Width="496*">
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="*">
             </ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="300"></RowDefinition>
-            <RowDefinition Height="100"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="0"></RowDefinition>
         </Grid.RowDefinitions>
-        <Border BorderBrush="Gray" BorderThickness="1,1,1,1" Grid.ColumnSpan="2">
+        <Border BorderBrush="Gray" BorderThickness="0" Grid.Row="0" Grid.Column="0">
             <Image Source="{Binding Path=OutPic, Converter={StaticResource ImagePathConverter}}"></Image>
         </Border>
-        <Border BorderBrush="Gray" BorderThickness="1,1,1,1" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+        <Border BorderBrush="Gray" BorderThickness="1,1,1,1" Grid.Row="1" Grid.Column="0">
             <TextBlock Text="{Binding Path=CarNo}"></TextBlock>
         </Border>
 
-        <Border BorderBrush="Gray" BorderThickness="1,1,1,1" Grid.Row="0" Grid.Column="2">
+        <Border BorderBrush="Gray" BorderThickness="0" Grid.Row="0" Grid.Column="1">
             <Image Source="{Binding Path=InPic, Converter={StaticResource ImagePathConverter}}"></Image>
         </Border>
-        <Border BorderBrush="Gray" BorderThickness="1,1,1,1" Grid.Row="1" Grid.Column="0" Grid.ColumnSpan="2">
+        <Border BorderBrush="Gray" BorderThickness="1,1,1,1" Grid.Row="1" Grid.Column="1">
+            <TextBlock Text="{Binding Path=CarNo}"></TextBlock>
         </Border>
     </Grid>
 </Window>

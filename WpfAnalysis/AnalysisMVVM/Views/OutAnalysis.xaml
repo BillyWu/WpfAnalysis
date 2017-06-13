@@ -69,7 +69,7 @@
                     <Button Margin="10,0,10,0" Content="导出Excel" Name="btnExcel" Click="btnExcel_Click" Padding="8,0">
                         <Button.IsEnabled>
                             <MultiBinding Converter="{StaticResource keyIsEnabledConverterMultiValue}">
-                                <Binding Path="OutCollection" />
+                                <Binding Path="RecordCollection" />
                                 <Binding Path="CollectionCount" />
                             </MultiBinding>
                         </Button.IsEnabled>
@@ -78,7 +78,7 @@
                     <Button Margin="10,0,10,0" Content="打印" Name="btnPrint" Click="btnPrint_Click" Padding="8,0">
                         <Button.IsEnabled>
                             <MultiBinding Converter="{StaticResource keyIsEnabledConverterMultiValue}">
-                                <Binding Path="OutCollection" />
+                                <Binding Path="RecordCollection" />
                                 <Binding Path="CollectionCount" />
                             </MultiBinding>
                         </Button.IsEnabled>
@@ -86,7 +86,7 @@
                 </StackPanel>
             </Border>
             <Border DockPanel.Dock="Top" BorderBrush="Gray" BorderThickness="1,0,1,1">
-                <ListView Name="listView1" ItemsSource="{Binding OutCollection}" Style="{StaticResource MyListViewStyle}" ItemContainerStyle="{StaticResource MyContainerStyle}">
+                <ListView Name="listView1" ItemsSource="{Binding RecordCollection}" Style="{StaticResource MyListViewStyle}" ItemContainerStyle="{StaticResource MyContainerStyle}">
                     <ListView.View>
                         <GridView x:Name="gridView1">
                             <GridView.Columns>

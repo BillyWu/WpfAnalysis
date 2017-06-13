@@ -15,13 +15,25 @@ using System.Windows.Shapes;
 namespace WpfAnalysis
 {
     /// <summary>
-    /// Interaction logic for InAnalysis.xaml
+    /// Interaction logic for OutDetail.xaml
     /// </summary>
-    public partial class InAnalysis : Window
+    public partial class InDetail : Window
     {
-        public InAnalysis()
+        private InDetailViewModel _inDetailViewModel;
+
+        public InDetail()
         {
             InitializeComponent();
         }
+
+        public InDetail(InViewModel inViewModel)
+        {
+            InitializeComponent();
+
+            _inDetailViewModel = new InDetailViewModel(inViewModel);
+
+            this.DataContext = _inDetailViewModel;
+        }
+
     }
 }

@@ -8,30 +8,18 @@ using System.Threading.Tasks;
 
 namespace WpfAnalysis
 {
-    public class OutDetailViewModel : NotifyPropertyChanged
+    public class OutDetailViewModel : InOutDetailViewModel
     {
 
-        public OutDetailViewModel(OutViewModel outViewModel)
+        public OutDetailViewModel(OutViewModel viewModel)
         {
-            this.CarNo = outViewModel.CarNo;
-            this.OutPic = outViewModel.OutPic;
+            this.CarNo = viewModel.CarNo;
+            this.OutPic = viewModel.OutPic;
 
             using (var context = new FZWD20150818Context())
             {
-                var oInPark = context.in_park.Find(new object[] { outViewModel.OutParkRecord.card_no, outViewModel.OutParkRecord.in_seq });
+                var oInPark = context.in_park.Find(new object[] { viewModel.OutParkRecord.card_no, viewModel.OutParkRecord.in_seq });
                 this.InPic = oInPark.in_pic;
-            }
-                
-        }
-
-        private string _carno;
-        public string CarNo
-        {
-            get { return _carno; }
-            set
-            {
-                _carno = value;
-                OnPropertyChanged(new PropertyChangedEventArgs("CarNo"));
             }
         }
 

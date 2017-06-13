@@ -80,32 +80,36 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="InViewModel.cs" />
-    <Compile Include="ExportToExcel.cs" />
-    <Compile Include="HeaderTemplate.xaml.cs">
+    <Compile Include="PrintUtility\GenerateUtil.cs" />
+    <Compile Include="AnalysisMVVM\Views\InDetail.xaml.cs">
+      <DependentUpon>InDetail.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="AnalysisMVVM\ViewModels\InDetailViewModel.cs" />
+    <Compile Include="AnalysisMVVM\ViewModels\InOutDetailViewModel.cs" />
+    <Compile Include="AnalysisMVVM\ViewModels\InOutViewModel.cs" />
+    <Compile Include="AnalysisMVVM\ViewModels\InViewModel.cs" />
+    <Compile Include="ExportUtility\ExportToExcel.cs" />
+    <Compile Include="PrintUtility\HeaderTemplate.xaml.cs">
       <DependentUpon>HeaderTemplate.xaml</DependentUpon>
     </Compile>
     <Compile Include="IsEnabledConverterMultiValue.cs" />
-    <Compile Include="OutDetailViewModel.cs" />
+    <Compile Include="AnalysisMVVM\ViewModels\OutDetailViewModel.cs" />
     <Compile Include="ImagePathConverter.cs" />
-    <Compile Include="EnumCarType.cs" />
-    <Compile Include="CommandBase.cs" />
-    <Compile Include="EnumCardType.cs" />
-    <Compile Include="NotifyPropertyChanged.cs" />
-    <Compile Include="OutAnalysisViewModel.cs" />
-    <Compile Include="OutCommandAnalysis.cs" />
-    <Compile Include="OutDetail.xaml.cs">
+    <Compile Include="AnalysisMVVM\TypeDefines\EnumCarType.cs" />
+    <Compile Include="AnalysisMVVM\Commands\CommandBase.cs" />
+    <Compile Include="AnalysisMVVM\TypeDefines\EnumCardType.cs" />
+    <Compile Include="AnalysisMVVM\NotifyPropertyChanged.cs" />
+    <Compile Include="AnalysisMVVM\ViewModels\InOutAnalysisViewModel.cs" />
+    <Compile Include="AnalysisMVVM\Commands\InOutCommandAnalysis.cs" />
+    <Compile Include="AnalysisMVVM\Views\OutDetail.xaml.cs">
       <DependentUpon>OutDetail.xaml</DependentUpon>
     </Compile>
-    <Compile Include="OutViewModel.cs" />
-    <Compile Include="SoftOpenAnalysis.xaml.cs">
-      <DependentUpon>SoftOpenAnalysis.xaml</DependentUpon>
-    </Compile>
-    <Page Include="HeaderTemplate.xaml">
+    <Compile Include="AnalysisMVVM\ViewModels\OutViewModel.cs" />
+    <Page Include="PrintUtility\HeaderTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="InAnalysis.xaml">
+    <Page Include="AnalysisMVVM\Views\InAnalysis.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -113,18 +117,18 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="InAnalysis.xaml.cs">
+    <Compile Include="AnalysisMVVM\Views\InAnalysis.xaml.cs">
       <DependentUpon>InAnalysis.xaml</DependentUpon>
     </Compile>
-    <Page Include="OutAnalysis.xaml">
+    <Page Include="AnalysisMVVM\Views\InDetail.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
+    <Page Include="AnalysisMVVM\Views\OutAnalysis.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="OutDetail.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="SoftOpenAnalysis.xaml">
+    <Page Include="AnalysisMVVM\Views\OutDetail.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -439,7 +443,7 @@
     <Compile Include="Models\xg_node.cs" />
     <Compile Include="Models\xg_plan.cs" />
     <Compile Include="Models\xg_plan_detail.cs" />
-    <Compile Include="OutAnalysis.xaml.cs">
+    <Compile Include="AnalysisMVVM\Views\OutAnalysis.xaml.cs">
       <DependentUpon>OutAnalysis.xaml</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -505,5 +509,6 @@
       <Name>SUT.PrintEngine</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

@@ -20,7 +20,7 @@ namespace WpfAnalysis
         where U : ObservableCollection<T>
     {
         public ObservableCollection<T> dataToPrint;
-        public List<Tuple<string, string>> headers; 
+        public List<Tuple<string, string, double, Type>> headers; 
         // Excel object references.
         private Excel.Application _excelApp = null;
         private Excel.Workbooks _books = null;
@@ -91,8 +91,21 @@ namespace WpfAnalysis
                 var item = dataToPrint[j];
                 for (int i = 0; i < headers.Count; i++)
                 {
-                    var y = typeof(T).InvokeMember(headers[i].Item2.ToString(), BindingFlags.GetProperty, null, item, null);
-                    objData[j, i] = (y == null) ? "" : y.ToString();
+                    if (dataToPrint[j] is OutViewModel)
+                    {
+                        var y = typeof(OutViewModel).InvokeMember(headers[i].Item2.ToString(), BindingFlags.GetProperty, null, item, null);
+                        objData[j, i] = (y == null) ? "" : y.ToString();
+                    }
+                    else if (dataToPrint[j] is InViewModel)
+                    {
+                        var y = typeof(InViewModel).InvokeMember(headers[i].Item2.ToString(), BindingFlags.GetProperty, null, item, null);
+                        objData[j, i] = (y == null) ? "" : y.ToString();
+                    }
+                    else
+                    {
+                        var y = typeof(T).InvokeMember(headers[i].Item2.ToString(), BindingFlags.GetProperty, null, item, null);
+                        objData[j, i] = (y == null) ? "" : y.ToString();
+                    }
                 }
             }
             AddExcelRows("A2", dataToPrint.Count, headers.Count, objData);
