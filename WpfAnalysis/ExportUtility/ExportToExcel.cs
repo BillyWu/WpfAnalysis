@@ -192,6 +192,7 @@ namespace WpfAnalysis
             _font = _range.Font;
             _font.Bold = true;
         }
+
         /// <summary>
         /// Method to add an excel rows
         /// </summary>
@@ -216,6 +217,7 @@ namespace WpfAnalysis
             _sheets = (Excel.Sheets)_book.Worksheets;
             _sheet = (Excel._Worksheet)(_sheets.get_Item(1));
         }
+
         /// <summary>
         /// Release unused COM objects
         /// </summary>

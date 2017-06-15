@@ -16,6 +16,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using System.Reflection;
+using WpfAnalysis.ExportUtility;
 
 namespace WpfAnalysis
 {
@@ -51,10 +52,7 @@ namespace WpfAnalysis
 
         private void btnExcel_Click(object sender, RoutedEventArgs e)
         {
-            var s = new ExportToExcel<InOutViewModel, ObservableCollection<InOutViewModel>>();
-            s.headers = headers;
-            s.dataToPrint = viewModel.RecordCollection;
-            s.GenerateReport();
+            ExportToExcelWithNPIO.ExportToExcel("入场记录.xls", headers, viewModel.RecordCollection);
         }
 
         private void btnPrint_Click(object sender, RoutedEventArgs e)
