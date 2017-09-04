@@ -30,10 +30,23 @@ namespace WpfAnalysis
 
                     if (_type == typeof(OutAnalysis))
                     {
-                        var listRecord = context.out_park.Where(x => x.out_time >= dtStartDT 
-                                                                && x.out_time <= dtEndDT
-                                                                && x.card_tid == (int)_viewModel.SelectedCardType)
-                                                                .ToList();
+                        List<out_park> listRecord = null;
+                        if (_viewModel.SelectedCardType == EnumCardType.全部)
+                        {
+                            listRecord = context.out_park.Where(x => x.out_time >= dtStartDT
+                                                                    && x.out_time <= dtEndDT)
+                                                            .OrderByDescending(x => x.out_time)
+                                                            .ToList();
+                        }
+                        else
+                        {
+                            listRecord = context.out_park.Where(x => x.out_time >= dtStartDT
+                                                                    && x.out_time <= dtEndDT)
+                                                            .Where(x => x.card_tid == (int)_viewModel.SelectedCardType)
+                                                            .OrderByDescending(x => x.out_time)
+                                                            .ToList();
+                        }
+
                         _viewModel.CollectionCount = listRecord.Count;
                         _viewModel.RecordCollection.Clear();
                         foreach(var record in listRecord)
@@ -72,10 +85,23 @@ namespace WpfAnalysis
                     }
                     else if (_type == typeof(InAnalysis))
                     {
-                        var listRecord = context.in_park.Where(x => x.in_time >= dtStartDT 
+                        List<in_park> listRecord = null;
+                        if (_viewModel.SelectedCardType == EnumCardType.全部)
+                        {
+                            listRecord = context.in_park.Where(x => x.in_time >= dtStartDT
+                                                                && x.in_time <= dtEndDT)
+                                                                .OrderByDescending(x => x.in_time)
+                                                                .ToList();
+                        }
+                        else
+                        {
+                            listRecord = context.in_park.Where(x => x.in_time >= dtStartDT
                                                                 && x.in_time <= dtEndDT
                                                                 && x.card_tid == (int)_viewModel.SelectedCardType)
+                                                                .OrderByDescending(x => x.in_time)
                                                                 .ToList();
+                        }
+                            
                         _viewModel.CollectionCount = listRecord.Count;
                         _viewModel.RecordCollection.Clear();
                         foreach (var record in listRecord)

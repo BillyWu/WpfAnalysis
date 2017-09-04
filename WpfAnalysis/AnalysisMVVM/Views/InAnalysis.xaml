@@ -42,8 +42,8 @@
         <DockPanel>
             <Border DockPanel.Dock="Top" BorderBrush="Gray" BorderThickness="1,1,1,1">
                 <StackPanel HorizontalAlignment="Left" Margin="8" Orientation="Horizontal">
-                    <TextBlock VerticalAlignment="Center" Text="车类型:" />
-                    <ComboBox Margin="10,0,10,0" VerticalAlignment="Center" Width="80"
+                    <TextBlock Visibility="Collapsed" VerticalAlignment="Center" Text="车类型:" />
+                    <ComboBox Visibility="Collapsed" Margin="10,0,10,0" VerticalAlignment="Center" Width="80"
                                           ItemsSource="{Binding Source={StaticResource EnumCardTypeEnum}}" 
                                           SelectedItem="{Binding SelectedCardType}"
                                           >

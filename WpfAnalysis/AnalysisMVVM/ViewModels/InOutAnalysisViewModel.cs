@@ -14,7 +14,7 @@ namespace WpfAnalysis
         {
             RecordCollection = new ObservableCollection<InOutViewModel>();
 
-            SelectedCardType = EnumCardType.月租车;
+            SelectedCardType = EnumCardType.全部;
 
             AnalysisStartDateTime = DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd") + " 00:00:00");
             AnalysisEndDateTime = DateTime.Parse(DateTime.Now.ToString("yyyy-MM-dd") + " 23:59:59");

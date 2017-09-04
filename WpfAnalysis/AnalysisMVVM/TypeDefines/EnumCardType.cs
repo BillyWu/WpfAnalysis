@@ -8,6 +8,7 @@ namespace WpfAnalysis
 {
     public enum EnumCardType : int
     {
+        全部 = 0,
         月租车 = 3,
         临时车 = 5,
         预约车 = 8,
