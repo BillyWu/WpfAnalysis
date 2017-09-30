@@ -48,5 +48,29 @@ namespace SUT.PrintEngine.Utils
             return dataTable;
         }
 
+        public static DataTable GenerateDataTable1<T>(List<Tuple<string, string, double, Type>> headers, ObservableCollection<T> RecordCollection)
+        {
+            var dataTable = new DataTable();
+
+            foreach (var column in headers)
+            {
+                dataTable.Columns.Add(new DataColumn(column.Item1, column.Item4));
+            }
+
+            foreach (var item in RecordCollection)
+            {
+                var dataRow = dataTable.NewRow();
+
+                for (int i = 0; i < headers.Count; i++)
+                {
+                    var y = typeof(T).InvokeMember(headers[i].Item2, BindingFlags.GetProperty, null, item, null);
+                    dataRow[i] = (y == null) ? "" : y.ToString();
+                }
+
+                dataTable.Rows.Add(dataRow);
+            }
+
+            return dataTable;
+        }
     }
 }

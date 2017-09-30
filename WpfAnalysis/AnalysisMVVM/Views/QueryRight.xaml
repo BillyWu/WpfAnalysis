@@ -1,0 +1,165 @@
+﻿<Window x:Class="WpfAnalysis.QueryRight"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WpfAnalysis"
+        mc:Ignorable="d"
+        Title="门禁权限查询" Height="800" Width="1400" FontSize="16">
+    <Window.Resources>
+        <Style x:Key="MyListViewStyle" TargetType="{x:Type ListBox}">
+            <Setter Property="SelectionMode" Value="Single"></Setter>
+            <Setter Property="Margin" Value="2"/>
+        </Style>
+        <Style x:Key="MyContainerStyle" TargetType="{x:Type ListViewItem}">
+            <Setter Property="Margin" Value="0,1,0,0"/>
+            <Setter Property="Height" Value="21"/>
+            <Setter Property="HorizontalContentAlignment" Value="Center" />
+            <Style.Triggers>
+                <Trigger Property="IsMouseOver" Value="true">
+                    <Setter Property="Cursor" Value="Hand"/>
+                </Trigger>
+                <MultiTrigger>
+                    <MultiTrigger.Conditions>
+                        <Condition Property="IsSelected" Value="true" />
+                        <Condition Property="Selector.IsSelectionActive" Value="true" />
+                    </MultiTrigger.Conditions>
+                    <Setter Property="Foreground" Value="Blue" />
+                </MultiTrigger>
+            </Style.Triggers>
+        </Style>
+        <local:IsEnabledConverterMultiValue x:Key="keyIsEnabledConverterMultiValue" />
+    </Window.Resources>
+    <Grid>
+        <DockPanel>
+            <Border DockPanel.Dock="Top" BorderBrush="Gray" BorderThickness="1,1,1,1">
+                <StackPanel HorizontalAlignment="Left" Margin="8" Orientation="Horizontal">
+                    <TextBlock Margin="10,0,10,0" Text="姓名" VerticalAlignment="Center"/>
+                    <TextBox Width="60" VerticalAlignment="Center" Text="{Binding FilterName, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                    <TextBlock Margin="10,0,10,0" Text="编号" VerticalAlignment="Center"/>
+                    <TextBox Width="60" VerticalAlignment="Center" Text="{Binding FilterBh, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                    <TextBlock Margin="10,0,10,0" Text="卡号" VerticalAlignment="Center"/>
+                    <TextBox Width="60" VerticalAlignment="Center" Text="{Binding FilterCardNo, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                    <TextBlock Margin="10,0,10,0" Text="门名称" VerticalAlignment="Center"/>
+                    <TextBox Width="160" VerticalAlignment="Center" Text="{Binding FilterDoorName, UpdateSourceTrigger=PropertyChanged}"></TextBox>
+                    <TextBlock Margin="10,0,10,0" Text="发布日期:" VerticalAlignment="Center"/>
+                    <DatePicker SelectedDate="{Binding PublishStartDate, UpdateSourceTrigger=PropertyChanged}"></DatePicker>
+                    <TextBlock Margin="10,0,10,0" Text="至" VerticalAlignment="Center"/>
+                    <DatePicker SelectedDate="{Binding PublishEndDate, UpdateSourceTrigger=PropertyChanged}"></DatePicker>
+                    <Button Margin="10,0,10,0" Content="查询" IsDefault="True" Command="{Binding AnalysisCommand}" Padding="8,0" />
+
+                    <TextBlock Margin="10,0,10,0" Text="记录数:" VerticalAlignment="Center"/>
+                    <TextBlock Margin="10,0,10,0" Text="{Binding CollectionCount}" VerticalAlignment="Center"/>
+
+                    <Button Margin="10,0,10,0" Content="导出Excel" Name="btnExcel" Click="btnExcel_Click" Padding="8,0">
+                        <Button.IsEnabled>
+                            <MultiBinding Converter="{StaticResource keyIsEnabledConverterMultiValue}">
+                                <Binding Path="RecordCollection" />
+                                <Binding Path="CollectionCount" />
+                            </MultiBinding>
+                        </Button.IsEnabled>
+                    </Button>
+
+                    <Button Margin="10,0,10,0" Content="打印" Name="btnPrint" Click="btnPrint_Click" Padding="8,0">
+                        <Button.IsEnabled>
+                            <MultiBinding Converter="{StaticResource keyIsEnabledConverterMultiValue}">
+                                <Binding Path="RecordCollection" />
+                                <Binding Path="CollectionCount" />
+                            </MultiBinding>
+                        </Button.IsEnabled>
+                    </Button>
+                </StackPanel>
+            </Border>
+            <Border DockPanel.Dock="Top" BorderBrush="Gray" BorderThickness="1,0,1,1">
+                <ListView Name="listView1" ItemsSource="{Binding CvRecordCollection}" Style="{StaticResource MyListViewStyle}" ItemContainerStyle="{StaticResource MyContainerStyle}">
+                    <ListView.View>
+                        <GridView x:Name="gridView1">
+                            <GridView.Columns>
+                                <GridViewColumn Width="100">
+                                    <GridViewColumnHeader Tag="CardNo">
+                                        卡号
+                                    </GridViewColumnHeader>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=CardNo}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Width="80">
+                                    <GridViewColumnHeader Tag="PersonCode">
+                                        用户编号
+                                    </GridViewColumnHeader>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=PersonCode}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Width="80">
+                                    <GridViewColumnHeader Tag="PersonName">
+                                        用户姓名
+                                    </GridViewColumnHeader>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=PersonName}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Width="80">
+                                    <GridViewColumnHeader Tag="CardStatus">
+                                        卡状态
+                                    </GridViewColumnHeader>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=CardStatus}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Width="180">
+                                    <GridViewColumnHeader Tag="ValidStartDate">
+                                        有效起始日期
+                                    </GridViewColumnHeader>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=ValidStartDate}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Width="180">
+                                    <GridViewColumnHeader Tag="ValidEndDate">
+                                        有效结束日期
+                                    </GridViewColumnHeader>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=ValidEndDate}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Width="80">
+                                    <GridViewColumnHeader Tag="TimeSectionNo">
+                                        时段编号
+                                    </GridViewColumnHeader>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=TimeSectionNo}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                                <GridViewColumn Width="580">
+                                    <GridViewColumnHeader Tag="DoorRights">
+                                        门禁有效权限
+                                    </GridViewColumnHeader>
+                                    <GridViewColumn.CellTemplate>
+                                        <DataTemplate>
+                                            <TextBlock Text="{Binding Path=DoorRights}" />
+                                        </DataTemplate>
+                                    </GridViewColumn.CellTemplate>
+                                </GridViewColumn>
+                            </GridView.Columns>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+            </Border>
+        </DockPanel>
+    </Grid>
+</Window>

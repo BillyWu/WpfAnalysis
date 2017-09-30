@@ -101,7 +101,7 @@ namespace WpfAnalysis
                                                                 .OrderByDescending(x => x.in_time)
                                                                 .ToList();
                         }
-                            
+
                         _viewModel.CollectionCount = listRecord.Count;
                         _viewModel.RecordCollection.Clear();
                         foreach (var record in listRecord)

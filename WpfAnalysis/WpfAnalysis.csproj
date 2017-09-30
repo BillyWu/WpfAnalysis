@@ -95,6 +95,13 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="AnalysisMVVM\Commands\QueryRightCommand.cs" />
+    <Compile Include="AnalysisMVVM\ViewModels\QueryRightRowViewModel.cs" />
+    <Compile Include="AnalysisMVVM\ViewModels\QueryRightViewModel.cs" />
+    <Compile Include="AnalysisMVVM\Views\QueryRight.xaml.cs">
+      <DependentUpon>QueryRight.xaml</DependentUpon>
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ExportUtility\ExportToExcelWithNPIO.cs" />
     <Compile Include="PrintUtility\GenerateUtil.cs" />
     <Compile Include="AnalysisMVVM\Views\InDetail.xaml.cs">
@@ -120,6 +127,10 @@
       <DependentUpon>OutDetail.xaml</DependentUpon>
     </Compile>
     <Compile Include="AnalysisMVVM\ViewModels\OutViewModel.cs" />
+    <Page Include="AnalysisMVVM\Views\QueryRight.xaml">
+      <SubType>Designer</SubType>
+      <Generator>XamlIntelliSenseFileGenerator</Generator>
+    </Page>
     <Page Include="PrintUtility\HeaderTemplate.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>

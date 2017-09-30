@@ -76,6 +76,59 @@ namespace WpfAnalysis.ExportUtility
             ExploreFile(excelFile);
         }
 
+        public static void ExportToExcel1<T>(string excelName, List<Tuple<string, string, double, Type>> headers, ObservableCollection<T> RecordCollection)
+        {
+            string excelPath = ConfigurationManager.AppSettings["ExcelPath"];
+            if (excelPath.Last() != System.IO.Path.DirectorySeparatorChar)
+                excelPath += System.IO.Path.DirectorySeparatorChar;
+            string excelFile = string.Format("{0}{1}", excelPath, excelName);
+            string sheetName = "Sheet1";
+
+            if (File.Exists(excelFile))
+            {
+                File.Delete(excelFile);
+            }
+
+            HSSFWorkbook wb = HSSFWorkbook.Create(InternalWorkbook.CreateWorkbook());
+            HSSFSheet sh = (HSSFSheet)wb.CreateSheet(sheetName);
+
+            for (int i = 1; i <= RecordCollection.Count; i++)
+            {
+                var item = RecordCollection[i - 1];
+
+                if (sh.GetRow(i) == null)
+                    sh.CreateRow(i);
+
+                for (int j = 0; j < headers.Count; j++)
+                {
+                    if (sh.GetRow(i).GetCell(j) == null)
+                        sh.GetRow(i).CreateCell(j);
+
+                    string sValue = "";
+                    var y = typeof(T).InvokeMember(headers[j].Item2.ToString(), BindingFlags.GetProperty, null, item, null);
+                    sValue = (y == null) ? "" : y.ToString();
+
+                    sh.GetRow(i).GetCell(j).SetCellValue(sValue);
+                }
+            }
+
+            var r = sh.CreateRow(0);
+            for (int j = 0; j < headers.Count; j++)
+            {
+                if (sh.GetRow(0).GetCell(j) == null)
+                    sh.GetRow(0).CreateCell(j);
+                sh.GetRow(0).GetCell(j).SetCellValue(headers[j].Item1);
+                sh.AutoSizeColumn(j);
+            }
+
+            using (var fs = new FileStream(excelFile, FileMode.Create, FileAccess.Write))
+            {
+                wb.Write(fs);
+            }
+
+            ExploreFile(excelFile);
+        }
+
         public static bool ExploreFile(string filePath)
         {
             if (!System.IO.File.Exists(filePath))
